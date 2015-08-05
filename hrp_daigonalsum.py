@@ -12,3 +12,16 @@ def showMatrix(m):
 N=input()
 m=matrixInput(N)
 showMatrix(m)
+LeftDaigonal=0
+RightDaigonal=0
+for i in range(N):
+  for j in range(N):
+      if i==j:
+            LeftDaigonal+=m[i][j]
+      if i+j==N-1:
+            RightDaigonal+=m[i][j]
+
+
+print abs(LeftDaigonal-RightDaigonal)
+
+
