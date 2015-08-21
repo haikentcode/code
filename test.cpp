@@ -1,7 +1,12 @@
-#include <stdio.h>
+ #include <stdio.h>
+ int &fun(){
+     int static a=10;
+   return a;
+   
+}
  int main()
  {
-   int h = 8;
-   int b = h++ + h++ + h++;
-   printf("%d\n", h);
+   
+   fun()=30;
+   printf("%d\n", fun());
  }
