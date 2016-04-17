@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 from objects import objects 
-cap=cv2.VideoCapture(0)
+cap=cv2.VideoCapture("http://10.42.0.41:8080/video")
 while(True):
     ret,frame=cap.read()
     gray=frame#cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
