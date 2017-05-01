@@ -5,14 +5,14 @@ def nonlin(x,deriv=False):
     if(deriv==True):
         return x*(1-x)
     return 1/(1+np.exp(-x))
-    
+
 # input dataset
 X = np.array([  [0,0,1],
                 [0,1,1],
                 [1,0,1],
                 [1,1,1] ])
-    
-# output dataset            
+
+# output dataset
 y = np.array([[0,0,1,1]]).T
 
 # seed random numbers to make calculation
@@ -31,7 +31,7 @@ for iter in xrange(10000):
     # how much did we miss?
     l1_error = y - l1
 
-    # multiply how much we missed by the 
+    # multiply how much we missed by the
     # slope of the sigmoid at the values in l1
     l1_delta = l1_error * nonlin(l1,True)
 
@@ -40,4 +40,3 @@ for iter in xrange(10000):
 
 print "Output After Training:"
 print l1
-

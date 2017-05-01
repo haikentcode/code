@@ -9,6 +9,7 @@ class Person(object):
     # Setter function
     @first_name.setter
     def first_name(self, value):
+        print "setter"
         if not isinstance(value, str):
                raise TypeError('Expected a string')
         self._first_name = value
@@ -21,6 +22,5 @@ class Person(object):
 
 
 if __name__ == "__main__":
-        a = Person("haikent")
-        a.first_name = 423333
-        del a.first_name
+        a = Person(1234)
+        a.first_name = "HK"
