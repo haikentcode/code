@@ -1,0 +1,17 @@
+def cal(l):
+  sum=0
+  for i in range(len(l)-1):
+    if int(l[i])+int(l[i+1])<=26:
+             tl=[]
+             tl.extend(str(int(l[i])+int(l[i+1])))
+                tl.extend(l[i+2:])
+             sum=sum+1+cal(tl)
+    return sum
+
+
+if __name__=="__main__":
+  a=raw_input()
+  l=[x for x in a]
+  sum=cal(l)
+  print sum
+
