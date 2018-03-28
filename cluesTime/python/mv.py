@@ -26,5 +26,3 @@ _list.sort()
 for mv in _list:
     print mv
 
-
-if __name__ == "__main__":
