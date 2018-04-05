@@ -8,7 +8,7 @@ class JiraAPI:
         self.domain = "http://jira.shopclues.com/"
         self.worklog = "rest/api/2/issue/%s/worklog"
         self.user = 'C2047'
-        self.password = "hkNt@26*"
+        self.password = "******"
 
     def get(self,url):
         r = requests.get(url, auth=(self.user,self.password))
