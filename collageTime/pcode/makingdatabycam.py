@@ -37,16 +37,16 @@ def getFaces(idc,img):#imagePath
            global i
            face=Face(1.9,3,20,20)
            faces=face.getFaces(img)
-           print "find faces=",len(faces)
+           print("find faces=",len(faces))
            for image in faces:
                cv2.imwrite(str(idc)+"."+str(i)+".jpg",image)
                i+=1
 
 if __name__ == "__main__":
-        idc=input("candidateID(int):")
+        idc=eval(input("candidateID(int):"))
         while(True):
            ret,frame=cap.read()
-           print frame
+           print(frame)
            if not ret : continue
            gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
            cv2.imshow('frame',frame)
