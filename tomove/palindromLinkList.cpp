@@ -1,108 +1,122 @@
 #include<iostream>
-#include<string>
 using namespace std;
-template<class haiku>
-struct nod
-{
-	haiku data;
-	nod *next;
 
+struct node{
+	node *link;
+	int data;
 };
 
 
-template<class haiku>
-class list{
+class LinkList{
+	node *head;
+	node *tail;
 
-	nod<haiku> *head;
-	nod<haiku> *tell;
+	public:
+		LinkList(){
+			 head=NULL;tail=NULL;
+		}
 
-    public:
-    	 list(){
+		node *getHead(){
+			return head;
+		}
+		void setHead(node *nhead){
+			head = nhead;
+		}
 
-    	 	head=NULL;
-    	 	tell=NULL;
-    	 }
+		void add(int data){
+			node *tm;
+			tm = new node;
+			tm->data = data;
+		  if(tail==NULL){
+				 head = tm;
+				 tail = tm;
+			}else{
+         tail->link = tm;
+				 tail=tm;
+			}
+		}
 
-        nod<haiku> *getHead(){return head;}
-
-        void add(haiku data){
-
-             nod<haiku> *tm;
-             tm=new nod<haiku>;
-             tm->data=data;tm->next=NULL;
-
-        	if(tell==NULL) {head=tm;tell=tm;}
-
-        	else{
-
-        		tell->next=tm;
-        		tell=tm;
-        	}
-        }
-
-
-       void delt(haiku k){
-
-                  if(head!=NULL){
-
-                        nod<haiku> *tm=head;
-
-                         if(tm->data==k)
-                         {
-
-                            head=tm->next;
-
-                         }
-
-                         while(tm->next && tm->next->data!=k){
-
-                         	  tm=tm->next;
-                         }
-
-                         tm=tm->next->next;
-
-                  }
-       }
-
-
-
-
-
-    friend istream & operator >> (istream &din,list<haiku> &l){
-
-            haiku dt;
-            din>>dt;
-            l.add(dt);
-            return(din);
-    }
-
-   friend ostream & operator <<(ostream &dout,list<haiku> &l){
-
-     haiku dt;
-
-     nod<haiku> *tm;
-
-     tm=l.getHead();
-     dout<<"[ ";
-     while(tm!=NULL) {dout<<tm->data<<" "; tm=tm->next;}
-
-     dout<<"]";
-
-
-     return dout;
-
-   }
-
+		void printList(){
+			node *tm;
+			tm = getHead();
+			while(tm){
+				cout<<tm->data<<'\n';
+				tm = tm->link;
+			}
+		}
 
 };
 
+bool isPalindrom(node *head){
+   node *fp;
+	 node *sp;
+	 fp = head;
+	 sp = head;
+	 while(fp && fp->link){
+		 sp = sp->link;
+		 if(fp->link){
+			 fp = fp->link->link;
+		 }else{
+			 fp = fp->link;
+		 }
+	 }
 
-int main(){
- list<string> l;
- int n;
- cin>>n;
- for(int i=0;i<n;i++) cin>>l;
- cout<<l;
- cout<<endl;
+	 node *mid;
+	 node *start;
+	 mid = sp;
+	 start = head;
+
+
+	 while(mid){
+		 cout<<start->data<<" "<<mid->data<< '\n';
+		 if(start->data == mid->data){
+			 start = start->link;
+		   mid = mid->link;
+		 }else{
+			 return false;
+		 }
+	 }
+
+	 return true;
 
 }
+
+node * reverse(node * head){
+	if(head ==  NULL){
+		return head;
+	}
+	node *pre,*curr;
+	curr = head;
+	pre = NULL;
+	while(curr->link){
+		 node *tm;
+	   tm = curr->link;
+		 curr->link = pre;
+		 pre = curr;
+		 curr = tm;
+	}
+  if(curr->link == NULL){
+		curr->link = pre;
+	}
+	return curr;
+}
+
+int main(){
+  LinkList list;
+	list.add(4);
+	list.add(6);
+	list.add(7);
+	list.add(9);
+	list.printList();
+	node *newHead = reverse(list.getHead());
+	list.setHead(newHead);
+	cout<<"\n---------------\n";
+	list.printList();
+
+}
+
+// a -(^)> b -(^)> c -(^)> d -(^)> null
+// a->next = null ^ b
+// b->next = a ^ c
+// c->next = b ^ d
+// d-> next = c ^ null;
