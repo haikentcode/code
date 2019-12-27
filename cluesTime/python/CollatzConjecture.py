@@ -31,13 +31,15 @@ def ccstep(n):
 
 if __name__ == "__main__":
     _max = 0
-    count = 1
-    while count < 100000 :
+    count = input("start:")
+    end = input("end:")
+    t1=time.time()
+    while count <=end :
         # os.system('clear')
         # print [ x[0] for x in cache.keys()]
         _max = max(_max,ccstep(count))
         count+=1
-    print(_max)
+    print(_max,time.time()-t1)
 
 
 
