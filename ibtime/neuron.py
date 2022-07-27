@@ -8,14 +8,14 @@ from numpy import exp, array, random, dot, tanh
 # network with single neuron
 class NeuralNetwork():
 
-	def __init__(self):
+	def __init__(self,a,b):
 
 		# Using seed to make sure it'll
 		# generate same weights in every run
 		random.seed(1)
 
 		# 3x1 Weight matrix
-		self.weight_matrix = 2 * random.random((3, 1)) - 1
+		self.weight_matrix = 2 * random.random((a, b)) - 1
 
 	# tanh as activation fucntion
 	def tanh(self, x):
@@ -54,12 +54,12 @@ class NeuralNetwork():
 # Driver Code
 if __name__ == "__main__":
 
-	neural_network = NeuralNetwork()
+	neural_network = NeuralNetwork(4,1)
 
 	print ('Random weights at the start of training')
 	print (neural_network.weight_matrix)
 
-	train_inputs = array([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]])
+	train_inputs = array([[0, 0, 1,0], [1, 1, 1,1], [1, 0, 1,1], [0, 1, 1,0]])
 	train_outputs = array([[0, 1, 1, 0]]).T
 
 	neural_network.train(train_inputs, train_outputs, 10000)
@@ -69,4 +69,4 @@ if __name__ == "__main__":
 
 	# Test the neural network with a new situation.
 	print ("Testing network on new examples ->")
-	print (neural_network.forward_propagation(array([1, 0, 0])))
+	print (neural_network.forward_propagation(array([1, 0, 0,1])))
